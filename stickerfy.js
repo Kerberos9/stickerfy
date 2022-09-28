@@ -21,7 +21,7 @@ bot.on('photo', ctx => {
           response.data.pipe(fs.createWriteStream(`./${pic.file_id}.jpg`))
             .on('finish', () => {
               sharp(`./${pic.file_id}.jpg`).resize(sizes.width, sizes.height).png().toFile(`./${pic.file_id}.png`).then(() => {
-                ctx.replyWithPhoto({ source: `./${pic.file_id}.png` }).then(() => {
+                ctx.replyWithDocument({ source: `./${pic.file_id}.png` }).then(() => {
                   fs.unlinkSync(`${pic.file_id}.jpg`);
                   fs.unlinkSync(`${pic.file_id}.png`);
                 });
